@@ -11,10 +11,7 @@ import Foundation
 @available(iOS 15.0.0, *)
 public func requestWithAuthorisation<T: Decodable>(_ url: URL, token: String) async throws -> T {
   let request: URLRequest = try await createAuthorisedRequest(url, token: token)
-  let (data, _) = try await URLSession.shared.data(for: request)
-
-  let decoder = JSONDecoder()
-  return try decoder.decode(T.self, from: data)
+  return try await requestAndParseJson(request)
 }
 
 @available(iOS 15.0.0, *)
