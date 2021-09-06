@@ -50,6 +50,41 @@ class ApiClientTest: XCTestCase {
 //    XCTAssertTrue(result.token.count > 0)
 //  }
 
+  func testCreateAuthorisedJsonBodyRequest() async throws {
+    let url = URL(string: "https://fake.api.url/users")!
+    let jwtToken = "baz.bar.foo"
+    let data: [String : Any] = [
+      "foo": "bar",
+      "baz": 123
+    ]
+    let expectedEncodedCredentials = "{\"baz\":123,\"foo\":\"bar\"}"
+
+    let result: URLRequest = try await createAuthorisedJsonBodyRequest(url, token: jwtToken, dictionary: data)
+    let httpBody = String(decoding: result.httpBody!, as: UTF8.self)
+    let authHeader = result.value(forHTTPHeaderField: "Authorization")
+    let acceptHeader = result.value(forHTTPHeaderField: "Accept")
+    let contentTypeHeader = result.value(forHTTPHeaderField: "Content-Type")
+
+    XCTAssertEqual(result.httpMethod, "POST")
+    XCTAssertEqual(authHeader, "Bearer \(jwtToken)")
+    XCTAssertEqual(acceptHeader, "application/json")
+    XCTAssertEqual(contentTypeHeader, "application/json")
+    XCTAssertEqual(httpBody, expectedEncodedCredentials)
+  }
+
+  //  func testcPostJsonDictionaryWithToken() async throws {
+  //    let jwtToken = "your.token.here"
+  //    let endpoint = "your://endpoint.url"
+  //    let data: [String : Any] = [
+  //      "foo": "bar",
+  //      "baz": 123
+  //    ]
+  //
+  //    let result: <<YourTypeHere>> = try await postJsonDictionaryWithToken(endpoint, token: jwtToken, dictionary: data)
+  //
+  //    // your assertions here
+  //  }
+
   func testCreateAuthorisedRequest() async throws {
     let url = URL(string: "https://fake.api.url")
     let jwtToken = "foo.bar.baz"

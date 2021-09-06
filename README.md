@@ -83,6 +83,14 @@ curl -X 'GET' \
   -H 'Authorization: Bearer my.valid.jwtoken'
 ```
 
+### Posting JSON with JWT
+
+Similar to previous examples, you can use the following utility:
+
+```swift
+let result: <<YourTypeHere>> = try await postJsonDictionaryWithToken(endpoint, token: jwtToken, dictionary: data)
+```
+
 ## Credits
 
 The code is based on an [article by Donny
