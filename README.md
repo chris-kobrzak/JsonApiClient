@@ -31,7 +31,7 @@ let credentials = [
 3. Make a `POST` request, e.g.:
 
 ```swift
-let result: Token = try await requestTokenWithJsonCredentials(url!, credentials)
+let result: Token = try await postJsonDictionary(url!, credentials)
 
 print("My JWT token: \(result.token)")
 ```
@@ -71,7 +71,7 @@ let jwtToken = "my.valid.jwtoken"
 3. Make a `GET` request, e.g.:
 
 ```swift
-let books: [Book] = try await requestWithAuthorisation(endpoint, token: jwtToken)
+let books: [Book] = try await getWithAuthorisation(endpoint, token: jwtToken)
 ```
 
 This request is an equivalent of the following Curl command:

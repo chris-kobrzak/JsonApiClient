@@ -37,14 +37,14 @@ class ApiClientTest: XCTestCase {
     XCTAssertEqual(httpBody, expectedEncodedCredentials)
   }
 
-//  func testRequestTokenWithJsonCredentials() async throws {
+//  func testPostJsonDictionary() async throws {
 //    let url = URL(string: "https://fake.api.url/users/login")
 //    let credentials = [
 //      "email": "joe@bloggs.com",
 //      "password": "topS3cret"
 //    ]
 //
-//    let result: <<YourTypeHere>> = try await requestTokenWithJsonCredentials(url!, credentials)
+//    let result: <<YourTypeHere>> = try await postJsonDictionary(url!, credentials)
 //
 ////    print("Received token: \(result.token)")
 //    XCTAssertTrue(result.token.count > 0)
@@ -64,11 +64,11 @@ class ApiClientTest: XCTestCase {
     XCTAssertEqual(acceptHeader, "application/json")
   }
 
-  //  func testRequestWithAuthorisation() async throws {
+  //  func testGetWithAuthorisation() async throws {
   //    let jwtToken = "your.token.here"
   //    let endpoint = "your://endpoint.url"
   //
-  //    let result: <<YourTypeHere>> = try await requestWithAuthorisation(endpoint, token: jwtToken)
+  //    let result: <<YourTypeHere>> = try await getWithAuthorisation(endpoint, token: jwtToken)
   //
   //    // your assertions here
   //  }
