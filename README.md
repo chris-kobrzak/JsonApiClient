@@ -71,7 +71,7 @@ let jwtToken = "my.valid.jwtoken"
 3. Make a `GET` request, e.g.:
 
 ```swift
-let books: [Book] = try await getWithAuthorisation(endpoint, token: jwtToken)
+let books: [Book] = try await getJsonWithToken(endpoint, token: jwtToken)
 ```
 
 This request is an equivalent of the following Curl command:

@@ -64,11 +64,11 @@ class ApiClientTest: XCTestCase {
     XCTAssertEqual(acceptHeader, "application/json")
   }
 
-  //  func testGetWithAuthorisation() async throws {
+  //  func testGetWithToken() async throws {
   //    let jwtToken = "your.token.here"
   //    let endpoint = "your://endpoint.url"
   //
-  //    let result: <<YourTypeHere>> = try await getWithAuthorisation(endpoint, token: jwtToken)
+  //    let result: <<YourTypeHere>> = try await getJsonWithToken(endpoint, token: jwtToken)
   //
   //    // your assertions here
   //  }
