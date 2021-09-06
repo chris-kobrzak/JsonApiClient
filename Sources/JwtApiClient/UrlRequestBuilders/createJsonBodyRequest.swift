@@ -8,12 +8,12 @@
 import Foundation
 
 @available(iOS 15.0.0, *)
-func createJsonBodyRequest(_ url: URL!, _ parameters: [String: String]) async throws -> URLRequest {
-  let escapedParametersJson = JSONEncoder.encode(from: parameters)
+func createJsonBodyRequest(_ url: URL!, _ parameters: [String: Any]) async throws -> URLRequest {
+  let escapedParametersJson = parameters.stringified
 
   var request: URLRequest = try await createJsonRequest(url)
   request.httpMethod = "POST"
-  request.httpBody = escapedParametersJson.data(using: .utf8)
+  request.httpBody = escapedParametersJson?.data(using: .utf8)
 
   return request
 }

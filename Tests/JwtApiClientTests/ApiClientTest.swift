@@ -24,11 +24,11 @@ class ApiClientTest: XCTestCase {
 
   func testCreateJsonBodyRequest() async throws {
     let url = URL(string: "https://fake.api.url/users/login")
-    let credentials = [
+    let credentials: [String : Any] = [
       "login": "joe@bloggs.com",
-      "password": "topSecret"
+      "password": 12345
     ]
-    let expectedEncodedCredentials = "{\"login\":\"joe@bloggs.com\",\"password\":\"topSecret\"}"
+    let expectedEncodedCredentials = "{\"login\":\"joe@bloggs.com\",\"password\":12345}"
 
     let result: URLRequest = try await createJsonBodyRequest(url, credentials)
     let httpBody = String(decoding: result.httpBody!, as: UTF8.self)
