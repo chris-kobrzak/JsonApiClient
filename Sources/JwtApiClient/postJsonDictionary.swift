@@ -14,6 +14,8 @@ import Foundation
 
 @available(iOS 15.0.0, *)
 public func postJsonDictionary<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T {
-  let request = try await createJsonBodyRequest(url, dictionary)
+  var request = try await createJsonBodyRequest(url, dictionary)
+  request.setMethod("POST")
+
   return try await requestJson(request)
 }

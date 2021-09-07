@@ -11,7 +11,6 @@ public func createAuthorisedJsonBodyRequest(_ url: URL, token: String, dictionar
   let dictionaryJson = dictionary.stringified!
 
   var request = URLRequest(url: url)
-  request.setMethod("POST")
   request.setJsonBody(dictionaryJson)
   request.addJsonAcceptHeader()
   request.addJsonContentTypeHeader()

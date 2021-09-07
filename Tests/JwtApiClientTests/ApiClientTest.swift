@@ -32,8 +32,12 @@ class ApiClientTest: XCTestCase {
 
     let result: URLRequest = try await createJsonBodyRequest(url, credentials)
     let httpBody = String(decoding: result.httpBody!, as: UTF8.self)
+    let contentTypeHeader = result.value(forHTTPHeaderField: "Content-Type")
+    let acceptHeader = result.value(forHTTPHeaderField: "Accept")
 
-    XCTAssertEqual(result.httpMethod, "POST")
+    XCTAssertEqual(result.url, url)
+    XCTAssertEqual(contentTypeHeader, "application/json")
+    XCTAssertEqual(acceptHeader, "application/json")
     XCTAssertEqual(httpBody, expectedEncodedCredentials)
   }
 
@@ -65,7 +69,7 @@ class ApiClientTest: XCTestCase {
     let acceptHeader = result.value(forHTTPHeaderField: "Accept")
     let contentTypeHeader = result.value(forHTTPHeaderField: "Content-Type")
 
-    XCTAssertEqual(result.httpMethod, "POST")
+    XCTAssertEqual(result.url, url)
     XCTAssertEqual(authHeader, "Bearer \(jwtToken)")
     XCTAssertEqual(acceptHeader, "application/json")
     XCTAssertEqual(contentTypeHeader, "application/json")

@@ -12,7 +12,7 @@ func createJsonBodyRequest(_ url: URL!, _ dictionary: [String: Any]) async throw
   let dictionaryJson = dictionary.stringified!
 
   var request = URLRequest(url: url)
-  request.setMethod("POST")
+
   request.addJsonAcceptHeader()
   request.addJsonContentTypeHeader()
   request.setJsonBody(dictionaryJson)
