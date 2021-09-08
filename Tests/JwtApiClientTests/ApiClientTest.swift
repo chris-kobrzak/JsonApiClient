@@ -7,7 +7,6 @@
 import XCTest
 @testable import JwtApiClient
 
-@available(iOS 15.0.0, *)
 class ApiClientTest: XCTestCase {
   func testCreateJsonRequest() async throws {
     let url = URL(string: "https://fake.api.url/users/login")

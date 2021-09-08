@@ -12,7 +12,6 @@
 
 import Foundation
 
-@available(iOS 15.0.0, *)
 public func deleteWithToken<T: Decodable>(_ url: URL, token: String) async throws -> T {
   var request: URLRequest = try await createAuthorisedRequest(url, token: token)
   request.setMethod("DELETE")

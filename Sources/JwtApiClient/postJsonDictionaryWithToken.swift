@@ -11,7 +11,6 @@
 
 import Foundation
 
-@available(iOS 15.0.0, *)
 public func postJsonDictionaryWithToken<T: Decodable>(_ url: URL!, token: String, dictionary: [String: Any]) async throws -> T {
   var request = try await createAuthorisedJsonBodyRequest(url, token: token, dictionary: dictionary)
   request.setMethod("POST")

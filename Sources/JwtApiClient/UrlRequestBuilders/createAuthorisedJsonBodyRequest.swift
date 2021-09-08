@@ -6,7 +6,6 @@
 //
 import Foundation
 
-@available(iOS 15.0.0, *)
 public func createAuthorisedJsonBodyRequest(_ url: URL, token: String, dictionary: [String: Any]) async throws -> URLRequest {
   let dictionaryJson = dictionary.stringified!
 

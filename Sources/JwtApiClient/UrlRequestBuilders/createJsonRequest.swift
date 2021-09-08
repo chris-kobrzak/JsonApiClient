@@ -1,6 +1,5 @@
 import Foundation
 
-@available(iOS 15.0.0, *)
 public func createJsonRequest(_ url: URL) async throws -> URLRequest {
   var request = URLRequest(url: url)
 
