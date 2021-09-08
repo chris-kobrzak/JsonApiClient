@@ -89,6 +89,15 @@ class ApiClientTest: XCTestCase {
   //  }
 
   /*
+  func testDeleteWithToken() async throws {
+    let jwtToken = "foo.bar.baz"
+    let endpoint = URL(string: "https://fake.api.url/attendances/123")!
+
+    try await deleteWithToken(endpoint, token: jwtToken)
+
+    // your assertions here
+  }
+
   func testPatchJsonDictionaryWithToken() async throws {
     let jwtToken = "foo.bar.baz"
     let endpoint = URL(string: "https://fake.api.url/books/123")!
@@ -126,3 +135,5 @@ class ApiClientTest: XCTestCase {
   //    // your assertions here
   //  }
 }
+
+struct EmptyResponse: Decodable { }
