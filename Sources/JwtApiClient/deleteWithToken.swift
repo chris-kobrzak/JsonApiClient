@@ -1,20 +1,16 @@
 //
 //  deleteWithToken.swift
-//  Generic DELETE request handler that accepts a JSON API URL and a
-//  JWT token and returns a parsed JSON object.
-//
-//  Please note, it might be challenging to use this handler to work with
-//  DELETE requests that do not return any data due to the Generics type
-//  returned.
+//  Generic DELETE request handler that accepts a JSON API URL and a JWT token.
+//  It can only be used for empty responses.
 //
 //  Created by Chris Kobrzak on 07/09/2021.
 //
 
 import Foundation
 
-public func deleteWithToken<T: Decodable>(_ url: URL, token: String) async throws -> T {
+public func deleteWithToken(_ url: URL, token: String) async throws {
   var request: URLRequest = try await createAuthorisedRequest(url, token: token)
   request.setMethod("DELETE")
 
-  return try await requestJson(request)
+  let (_, _) = try await URLSession.shared.data(for: request)
 }
