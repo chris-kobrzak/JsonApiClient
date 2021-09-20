@@ -75,7 +75,7 @@ class ApiClientTest: XCTestCase {
     XCTAssertEqual(httpBody, expectedEncodedCredentials)
   }
 
-  //  func testcPostJsonDictionaryWithToken() async throws {
+  //  func testPostJsonDictionaryWithToken() async throws {
   //    let jwtToken = "your.token.here"
   //    let endpoint = "your://endpoint.url"
   //    let data: [String : Any] = [
@@ -87,6 +87,21 @@ class ApiClientTest: XCTestCase {
   //
   //    // your assertions here
   //  }
+
+  /*
+  func testPatchJsonDictionaryWithToken() async throws {
+    let jwtToken = "foo.bar.baz"
+    let endpoint = URL(string: "https://fake.api.url/books/123")!
+
+    let data: [String : Any] = [
+      "bar": "baz"
+    ]
+
+    try await patchJsonDictionaryWithToken(endpoint, token: jwtToken, dictionary: data)
+
+    // your assertions here
+  }
+  */
 
   func testCreateAuthorisedRequest() async throws {
     let url = URL(string: "https://fake.api.url")
