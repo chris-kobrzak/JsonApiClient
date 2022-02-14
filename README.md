@@ -6,6 +6,86 @@ Low-level utilities for interacting with APIs using [JWToken](https://jwt.io) au
 
 - iOS 15+ as the code uses the `async/await` syntax.
 
+## tl:dr;
+
+Say, your API returns the following JSON packet on successful authentication:
+
+```json
+{ "token": "<some JWT token>" }
+```
+
+... or an error if something goes wrong:
+
+```json
+{
+  "error": {
+    "statusCode": 40123,
+    "name": "something_went_wrong",
+    "message": "Some human-readable explanation"
+  }
+}
+```
+
+The above can be represented by a `catch`-able Swift error object:
+
+```swift
+struct ErrorResponse: Decodable {
+  let error: ApiError
+}
+
+struct ApiError: Decodable {
+  let statusCode: Int
+  let name: String
+  let message: String
+}
+
+extension ApiError: Error {}
+```
+
+Definition of success and failure responses in Swift:
+
+```swift
+public struct TokenResponse: Decodable {
+  public let token: String
+}
+
+extension TokenResponse {
+  enum CodingKeys: CodingKey {
+    case token
+  }
+
+  public init(from decoder: Decoder) throws {
+    guard let container = try? decoder.container(keyedBy: CodingKeys.self),
+          let token = try? container.decode(String.self, forKey: .token) else {
+        throw try ErrorResponse(from: decoder).error
+    }
+
+    self.init(token: token)
+  }
+}
+```
+
+Handling the request:
+
+```swift
+let url = URL(string: "https://fake.api.url/users/login")
+let credentials = [
+  "login": "joe@bloggs.com",
+  "password": "topS3cret"
+]
+
+var jwtToken = ""
+
+do {
+  let result: TokenResponse = try await postJsonDictionary(url!, credentials)
+  jwtToken = result.token
+} catch let error as ApiError {
+  // Handle API errors
+} catch {
+  // Handle other errors
+}
+```
+
 ## Sample usage
 
 ### Obtaining JWT token
