@@ -6,6 +6,29 @@ Low-level utilities for interacting with APIs using [JWToken](https://jwt.io) au
 
 - iOS 15+ as the code uses the `async/await` syntax.
 
+## API
+
+The package exports a protocol with default method implementations as well as the underlying functions.
+
+### JsonApiCompatible protocol
+
+```swift
+public protocol JsonApiCompatible {
+  static func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
+
+  static func post<T: Decodable>(_ url: URL!, token: String, dictionary: [String: Any]) async throws -> T
+
+  static func get<T: Decodable>(_ url: URL, token: String) async throws -> T
+
+  static func get<T: Decodable>(_ endpoint: String, token: String) async throws -> T
+
+  // The methods below currently assume the response is empty
+  static func delete(_ url: URL, token: String) async throws
+
+  static func patch(_ url: URL!, token: String, dictionary: [String: Any]) async throws
+}
+```
+
 ## tl:dr;
 
 Say, your API returns the following JSON packet on successful authentication:
@@ -68,6 +91,8 @@ extension TokenResponse {
 Handling the request:
 
 ```swift
+let client: JsonApiCompatible = JsonApiClient()
+
 let url = URL(string: "https://fake.api.url/users/login")
 let credentials = [
   "login": "joe@bloggs.com",
@@ -77,7 +102,7 @@ let credentials = [
 var jwtToken = ""
 
 do {
-  let result: TokenResponse = try await postJsonDictionary(url!, credentials)
+  let result: TokenResponse = try await client.post(url!, credentials)
   jwtToken = result.token
 } catch let error as ApiError {
   // Handle API errors
@@ -87,6 +112,8 @@ do {
 ```
 
 ## Sample usage
+
+Examples below use _functions_ but you might want to use a thin `JsonApiClient` wrapper struct instead.
 
 ### Obtaining JWT token
 
