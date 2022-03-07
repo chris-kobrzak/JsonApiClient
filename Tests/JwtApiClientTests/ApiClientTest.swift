@@ -5,10 +5,13 @@
 //  Created by Chris Kobrzak on 03/09/2021.
 //
 import XCTest
+import Mockingbird
 @testable import JwtApiClient
 
 class ApiClientTest: XCTestCase {
   func testCreateJsonRequest() async throws {
+//    MockJsonApiClient
+    let _ = mock(JsonApiClient.self)
     let url = URL(string: "https://fake.api.url/users/login")
 
     let result: URLRequest = try await createJsonRequest(url!)
