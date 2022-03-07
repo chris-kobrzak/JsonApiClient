@@ -8,4 +8,28 @@ import Foundation
 
 public class JsonApiClient: JsonApiCompatible {
   public init() {}
+
+  public func post<T>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T where T : Decodable {
+    try await postJsonDictionary(url, dictionary)
+  }
+
+  public func post<T>(_ url: URL!, token: String, dictionary: [String : Any]) async throws -> T where T : Decodable {
+    try await postJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
+  }
+
+  public func get<T>(_ url: URL, token: String) async throws -> T where T : Decodable {
+    try await getJsonWithToken(url, token: token)
+  }
+
+  public func get<T>(_ endpoint: String, token: String) async throws -> T where T : Decodable {
+    try await getJsonWithToken(endpoint, token: token)
+  }
+
+  public func delete(_ url: URL, token: String) async throws {
+    try await deleteWithToken(url, token: token)
+  }
+
+  public func patch(_ url: URL!, token: String, dictionary: [String : Any]) async throws {
+    try await patchJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
+  }
 }
