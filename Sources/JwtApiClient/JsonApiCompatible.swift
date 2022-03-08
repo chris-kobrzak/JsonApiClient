@@ -13,8 +13,6 @@ public protocol JsonApiCompatible {
 
   func get<T: Decodable>(_ url: URL, token: String) async throws -> T
 
-  func get<T: Decodable>(_ endpoint: String, token: String) async throws -> T
-
   // The methods below currently assume the response is empty
   func delete(_ url: URL, token: String) async throws
 
