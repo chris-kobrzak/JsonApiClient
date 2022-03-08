@@ -14,16 +14,16 @@ The package exports a protocol with default method implementations as well as th
 
 ```swift
 public protocol JsonApiCompatible {
-  static func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
+  func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
 
-  static func post<T: Decodable>(_ url: URL!, token: String, dictionary: [String: Any]) async throws -> T
+  func post<T: Decodable>(_ url: URL!, dictionary: [String: Any], token: String) async throws -> T
 
-  static func get<T: Decodable>(_ url: URL, token: String) async throws -> T
+  func get<T: Decodable>(_ url: URL, token: String) async throws -> T
 
   // The methods below currently assume the response is empty
-  static func delete(_ url: URL, token: String) async throws
+  func delete(_ url: URL, token: String) async throws
 
-  static func patch(_ url: URL!, token: String, dictionary: [String: Any]) async throws
+  func patch(_ url: URL!, dictionary: [String: Any], token: String) async throws
 }
 ```
 
