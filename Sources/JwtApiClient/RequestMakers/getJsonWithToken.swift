@@ -13,6 +13,7 @@ public func getJsonWithToken<T: Decodable>(_ url: URL, token: String) async thro
   return try await requestJson(request)
 }
 
+@available(*, deprecated, message: "Use getJsonWithToken(URL, String) instead")
 public func getJsonWithToken<T: Decodable>(_ endpoint: String, token: String) async throws -> T {
   let url = URL(string: endpoint)!
 

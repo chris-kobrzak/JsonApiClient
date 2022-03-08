@@ -21,10 +21,6 @@ public class JsonApiClient: JsonApiCompatible {
     try await getJsonWithToken(url, token: token)
   }
 
-  public func get<T>(_ endpoint: String, token: String) async throws -> T where T : Decodable {
-    try await getJsonWithToken(endpoint, token: token)
-  }
-
   public func delete(_ url: URL, token: String) async throws {
     try await deleteWithToken(url, token: token)
   }
