@@ -13,7 +13,7 @@ public class JsonApiClient: JsonApiCompatible {
     try await postJsonDictionary(url, dictionary)
   }
 
-  public func post<T>(_ url: URL!, token: String, dictionary: [String : Any]) async throws -> T where T : Decodable {
+  public func post<T>(_ url: URL!, dictionary: [String : Any], token: String) async throws -> T where T : Decodable {
     try await postJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
   }
 
@@ -25,7 +25,7 @@ public class JsonApiClient: JsonApiCompatible {
     try await deleteWithToken(url, token: token)
   }
 
-  public func patch(_ url: URL!, token: String, dictionary: [String : Any]) async throws {
+  public func patch(_ url: URL!, dictionary: [String : Any], token: String) async throws {
     try await patchJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
   }
 }
