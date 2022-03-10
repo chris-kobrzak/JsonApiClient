@@ -183,16 +183,16 @@ The package exports a protocol, a class implementating it as well as the underly
 
 ```swift
 public protocol JsonApiCompatible {
-  func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
+  func post<T: Decodable>(url: URL, dictionary: [String: Any]) async throws -> T
 
-  func post<T: Decodable>(_ url: URL!, dictionary: [String: Any], token: String) async throws -> T
+  func post<T: Decodable>(url: URL, dictionary: [String: Any], token: String) async throws -> T
 
-  func get<T: Decodable>(_ url: URL, token: String) async throws -> T
+  func get<T: Decodable>(url: URL, token: String) async throws -> T
 
   // The methods below currently assume the response is empty
-  func delete(_ url: URL, token: String) async throws
+  func delete(url: URL, token: String) async throws
 
-  func patch(_ url: URL!, dictionary: [String: Any], token: String) async throws
+  func patch(url: URL, dictionary: [String: Any], token: String) async throws
 }
 ```
 
