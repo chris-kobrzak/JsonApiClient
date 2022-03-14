@@ -6,27 +6,6 @@ Low-level utilities for interacting with APIs using [JWToken](https://jwt.io) au
 
 - iOS 15+ as the code uses the `async/await` syntax.
 
-## API
-
-The package exports a protocol with default method implementations as well as the underlying functions.
-
-### JsonApiCompatible protocol
-
-```swift
-public protocol JsonApiCompatible {
-  func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
-
-  func post<T: Decodable>(_ url: URL!, dictionary: [String: Any], token: String) async throws -> T
-
-  func get<T: Decodable>(_ url: URL, token: String) async throws -> T
-
-  // The methods below currently assume the response is empty
-  func delete(_ url: URL, token: String) async throws
-
-  func patch(_ url: URL!, dictionary: [String: Any], token: String) async throws
-}
-```
-
 ## tl:dr;
 
 Say, your API returns the following JSON packet on successful authentication:
@@ -195,6 +174,31 @@ Similar to previous examples, you can use the following utility:
 ```swift
 let result: <<YourTypeHere>> = try await postJsonDictionaryWithToken(endpoint, token: jwtToken, dictionary: data)
 ```
+
+## API
+
+The package exports a protocol, a class implementating it as well as the underlying functions.
+
+### JsonApiCompatible protocol
+
+```swift
+public protocol JsonApiCompatible {
+  func post<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T
+
+  func post<T: Decodable>(_ url: URL!, dictionary: [String: Any], token: String) async throws -> T
+
+  func get<T: Decodable>(_ url: URL, token: String) async throws -> T
+
+  // The methods below currently assume the response is empty
+  func delete(_ url: URL, token: String) async throws
+
+  func patch(_ url: URL!, dictionary: [String: Any], token: String) async throws
+}
+```
+
+### Class
+
+The class implementing the `JsonApiCompatible` protocol is called `JsonApiClient`.
 
 ## Credits
 
