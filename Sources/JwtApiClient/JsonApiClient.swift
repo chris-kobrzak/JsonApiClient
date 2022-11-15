@@ -9,6 +9,10 @@ import Foundation
 public class JsonApiClient: JsonApiCompatible {
   public init() {}
 
+  public func put(url: URL, dictionary: [String : Any]) async throws -> URLResponse {
+    return try await putJsonDictionary(url, dictionary)
+  }
+
   public func post(url: URL, dictionary: [String : Any]) async throws -> URLResponse {
     return try await postJsonDictionary(url, dictionary)
   }
