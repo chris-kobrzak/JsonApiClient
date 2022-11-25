@@ -6,7 +6,7 @@
 //
 import Foundation
 
-public func createAuthorisedRequest(_ url: URL, token: String) async throws -> URLRequest {
+func createAuthorisedRequest(_ url: URL, token: String) async throws -> URLRequest {
   var request = URLRequest(url: url)
   request.addJsonAcceptHeader()
   request.addJwtTokenHeader(token)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func requestJson<T: Decodable>(_ request: URLRequest) async throws -> T {
+func requestJson<T: Decodable>(_ request: URLRequest) async throws -> T {
   let (data, _) = try await URLSession.shared.data(for: request)
 
   let decoder = JSONDecoder()

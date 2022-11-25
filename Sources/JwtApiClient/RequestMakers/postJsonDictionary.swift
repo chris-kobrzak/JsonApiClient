@@ -12,7 +12,7 @@
 
 import Foundation
 
-public func postJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async throws -> URLResponse {
+func postJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async throws -> URLResponse {
   var request = try await createJsonBodyRequest(url, dictionary)
   request.setMethod("POST")
 
@@ -20,7 +20,7 @@ public func postJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async t
   return response
 }
 
-public func postJsonDictionary<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T {
+func postJsonDictionary<T: Decodable>(_ url: URL!, _ dictionary: [String: Any]) async throws -> T {
   var request = try await createJsonBodyRequest(url, dictionary)
   request.setMethod("POST")
 

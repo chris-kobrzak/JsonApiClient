@@ -115,7 +115,9 @@ let credentials = [
 3. Make a `POST` request, e.g.:
 
 ```swift
-let result: Token = try await postJsonDictionary(url!, credentials)
+let client: JsonApiCompatible = JsonApiClient()
+
+let result: Token = try await client.post(url!, credentials)
 
 print("My JWT token: \(result.token)")
 ```
@@ -155,7 +157,9 @@ let jwtToken = "my.valid.jwtoken"
 3. Make a `GET` request, e.g.:
 
 ```swift
-let books: [Book] = try await getJsonWithToken(endpoint, token: jwtToken)
+let client: JsonApiCompatible = JsonApiClient()
+
+let books: [Book] = try await client.get(endpoint, token: jwtToken)
 ```
 
 This request is an equivalent of the following Curl command:
@@ -172,21 +176,26 @@ curl -X 'GET' \
 Similar to previous examples, you can use the following utility:
 
 ```swift
-let result: <<YourTypeHere>> = try await postJsonDictionaryWithToken(endpoint, token: jwtToken, dictionary: data)
+let client: JsonApiCompatible = JsonApiClient()
+let result: <<YourTypeHere>> = try await client.post(endpoint, token: jwtToken, dictionary: data)
 ```
 
 ## API
 
-The package exports a protocol, a class implementating it as well as the underlying functions.
+The package exports a protocol and a class implementating it.
 
 ### JsonApiCompatible protocol
 
 ```swift
 public protocol JsonApiCompatible {
+  // Methods for handling requests that do not return anything
   func put(url: URL, dictionary: [String: Any]) async throws -> URLResponse
+
+  func patch(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
   func post(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
+  // Methods with dynamically defined types
   func post<T: Decodable>(url: URL, dictionary: [String: Any]) async throws -> T
 
   func post<T: Decodable>(url: URL, dictionary: [String: Any], token: String) async throws -> T
@@ -194,6 +203,7 @@ public protocol JsonApiCompatible {
   func get<T: Decodable>(url: URL, token: String) async throws -> T
 
   // The methods below currently assume the response is empty
+  // TODO: They should be rewritten to return URLResponse like the methods above
   func delete(url: URL, token: String) async throws
 
   func patch(url: URL, dictionary: [String: Any], token: String) async throws

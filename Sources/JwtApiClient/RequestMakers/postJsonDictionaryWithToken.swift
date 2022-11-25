@@ -11,7 +11,7 @@
 
 import Foundation
 
-public func postJsonDictionaryWithToken<T: Decodable>(_ url: URL!, token: String, dictionary: [String: Any]) async throws -> T {
+func postJsonDictionaryWithToken<T: Decodable>(_ url: URL!, token: String, dictionary: [String: Any]) async throws -> T {
   var request = try await createAuthorisedJsonBodyRequest(url, token: token, dictionary: dictionary)
   request.setMethod("POST")
 

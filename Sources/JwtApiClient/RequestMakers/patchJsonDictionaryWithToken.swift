@@ -11,7 +11,7 @@
 
 import Foundation
 
-public func patchJsonDictionaryWithToken(_ url: URL!, token: String, dictionary: [String: Any]) async throws {
+func patchJsonDictionaryWithToken(_ url: URL!, token: String, dictionary: [String: Any]) async throws {
   var request = try await createAuthorisedJsonBodyRequest(url, token: token, dictionary: dictionary)
   request.setMethod("PATCH")
 

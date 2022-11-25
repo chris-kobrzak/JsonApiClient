@@ -11,7 +11,7 @@
 
 import Foundation
 
-public func putJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async throws -> URLResponse {
+func putJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async throws -> URLResponse {
   var request = try await createJsonBodyRequest(url, dictionary)
   request.setMethod("PUT")
 

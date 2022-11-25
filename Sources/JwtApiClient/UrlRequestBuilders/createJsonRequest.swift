@@ -1,6 +1,6 @@
 import Foundation
 
-public func createJsonRequest(_ url: URL) async throws -> URLRequest {
+func createJsonRequest(_ url: URL) async throws -> URLRequest {
   var request = URLRequest(url: url)
 
   request.setValue("application/json", forHTTPHeaderField: "Accept")

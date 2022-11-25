@@ -8,13 +8,13 @@
 
 import Foundation
 
-public func getJsonWithToken<T: Decodable>(_ url: URL, token: String) async throws -> T {
+func getJsonWithToken<T: Decodable>(_ url: URL, token: String) async throws -> T {
   let request: URLRequest = try await createAuthorisedRequest(url, token: token)
   return try await requestJson(request)
 }
 
 @available(*, deprecated, message: "Use getJsonWithToken(URL, String) instead")
-public func getJsonWithToken<T: Decodable>(_ endpoint: String, token: String) async throws -> T {
+func getJsonWithToken<T: Decodable>(_ endpoint: String, token: String) async throws -> T {
   let url = URL(string: endpoint)!
 
   return try await getJsonWithToken(url, token: token)
