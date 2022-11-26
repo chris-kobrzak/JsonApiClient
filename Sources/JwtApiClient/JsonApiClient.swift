@@ -13,6 +13,10 @@ public class JsonApiClient: JsonApiCompatible {
     return try await putJsonDictionary(url, dictionary)
   }
 
+  public func patch(url: URL, dictionary: [String : Any]) async throws -> URLResponse {
+    return try await patchJsonDictionary(url, dictionary)
+  }
+
   public func post(url: URL, dictionary: [String : Any]) async throws -> URLResponse {
     return try await postJsonDictionary(url, dictionary)
   }

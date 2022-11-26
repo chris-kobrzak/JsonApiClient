@@ -9,6 +9,8 @@ import Foundation
 public protocol JsonApiCompatible {
   func put(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
+  func patch(url: URL, dictionary: [String: Any]) async throws -> URLResponse
+
   func post(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
   func post<T: Decodable>(url: URL, dictionary: [String: Any]) async throws -> T
