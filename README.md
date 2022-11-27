@@ -90,8 +90,6 @@ do {
 
 ## Sample usage
 
-Examples below use _functions_ but you might want to use a thin `JsonApiClient` wrapper struct instead.
-
 ### Obtaining JWT token
 
 1. Define the token API endpoint response model, e.g.:
