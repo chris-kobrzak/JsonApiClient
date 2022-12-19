@@ -12,5 +12,5 @@ func deleteWithToken(_ url: URL, token: String) async throws {
   var request: URLRequest = try await createAuthorisedRequest(url, token: token)
   request.setMethod("DELETE")
 
-  let (_, _) = try await URLSession.shared.data(for: request)
+  let (_, _) = try await makeGenericRequest(request)
 }

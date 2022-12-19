@@ -17,6 +17,6 @@ func patchJsonDictionary(_ url: URL!, _ dictionary: [String: Any]) async throws 
   var request = try await createJsonBodyRequest(url, dictionary)
   request.setMethod("PATCH")
 
-  let (_, response) = try await URLSession.shared.data(for: request)
+  let (_, response) = try await makeGenericRequest(request)
   return response
 }

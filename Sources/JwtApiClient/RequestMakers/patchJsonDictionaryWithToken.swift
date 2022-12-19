@@ -15,5 +15,5 @@ func patchJsonDictionaryWithToken(_ url: URL!, token: String, dictionary: [Strin
   var request = try await createAuthorisedJsonBodyRequest(url, token: token, dictionary: dictionary)
   request.setMethod("PATCH")
 
-  let (_, _) = try await URLSession.shared.data(for: request)
+  let (_, _) = try await makeGenericRequest(request)
 }
