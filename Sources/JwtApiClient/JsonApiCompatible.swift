@@ -6,7 +6,7 @@
 
 import Foundation
 
-public protocol JsonApiCompatible {
+public protocol JsonApiCompatible: Sendable {
   func put(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
   func patch(url: URL, dictionary: [String: Any]) async throws -> URLResponse

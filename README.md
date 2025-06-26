@@ -185,7 +185,7 @@ The package exports a protocol and a class implementating it.
 ### JsonApiCompatible protocol
 
 ```swift
-public protocol JsonApiCompatible {
+public protocol JsonApiCompatible: Sendable {
   // Methods for handling requests that do not return anything
   func put(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 

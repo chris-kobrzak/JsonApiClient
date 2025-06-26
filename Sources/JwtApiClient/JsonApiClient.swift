@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class JsonApiClient: JsonApiCompatible {
+public class JsonApiClient: @unchecked Sendable, JsonApiCompatible {
   public init() {}
 
   public func put(url: URL, dictionary: [String : Any]) async throws -> URLResponse {
