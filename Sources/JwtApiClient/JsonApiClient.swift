@@ -29,6 +29,14 @@ public class JsonApiClient: @unchecked Sendable, JsonApiCompatible {
     try await postJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
   }
 
+  public func put(url: URL, dictionary: [String : Any], token: String) async throws {
+    try await putJsonDictionaryWithToken(url, token: token, dictionary: dictionary)
+  }
+
+  public func put(url: URL, dictionaries: [[String : Any]], token: String) async throws {
+    try await putJsonDictionaryWithToken(url, token: token, dictionaries: dictionaries)
+  }
+
   public func get<T>(url: URL, token: String) async throws -> T where T : Decodable {
     try await getJsonWithToken(url, token: token)
   }
