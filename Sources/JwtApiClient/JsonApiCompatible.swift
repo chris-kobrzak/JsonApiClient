@@ -19,6 +19,8 @@ public protocol JsonApiCompatible: Sendable {
 
   func post(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
+  func post(url: URL, dictionary: [String: Any], token: String) async throws
+
   func post<T: Decodable>(url: URL, dictionary: [String: Any]) async throws -> T
 
   func post<T: Decodable>(url: URL, dictionary: [String: Any], token: String) async throws -> T

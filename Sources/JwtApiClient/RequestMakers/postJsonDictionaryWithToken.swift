@@ -17,3 +17,10 @@ func postJsonDictionaryWithToken<T: Decodable>(_ url: URL!, token: String, dicti
 
   return try await requestJson(request)
 }
+
+func postJsonDictionaryWithToken(_ url: URL!, token: String, dictionary: [String: Any]) async throws {
+  var request = try await createAuthorisedJsonBodyRequest(url, token: token, dictionary: dictionary)
+  request.setMethod("POST")
+
+  let _ = try await makeGenericRequest(request)
+}
