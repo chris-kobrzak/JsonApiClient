@@ -17,3 +17,16 @@ func createAuthorisedJsonBodyRequest(_ url: URL, token: String, dictionary: [Str
 
   return request
 }
+
+func createAuthorisedJsonBodyRequest(_ url: URL, token: String, payload: Any) async throws -> URLRequest {
+  let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
+  let json = String(data: jsonData, encoding: .utf8) ?? "{}"
+
+  var request = URLRequest(url: url)
+  request.setJsonBody(json)
+  request.addJsonAcceptHeader()
+  request.addJsonContentTypeHeader()
+  request.addJwtTokenHeader(token)
+
+  return request
+}

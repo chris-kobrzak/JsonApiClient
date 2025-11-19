@@ -9,9 +9,17 @@ import Foundation
 public protocol JsonApiCompatible: Sendable {
   func put(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
+  func put(url: URL, dictionary: [String: Any], token: String) async throws
+
+  func put(url: URL, dictionaries: [[String : Any]], token: String) async throws
+
   func patch(url: URL, dictionary: [String: Any]) async throws -> URLResponse
 
+  func patch(url: URL, dictionary: [String: Any], token: String) async throws
+
   func post(url: URL, dictionary: [String: Any]) async throws -> URLResponse
+
+  func post(url: URL, dictionary: [String: Any], token: String) async throws
 
   func post<T: Decodable>(url: URL, dictionary: [String: Any]) async throws -> T
 
@@ -21,6 +29,4 @@ public protocol JsonApiCompatible: Sendable {
 
   // The methods below currently assume the response is empty
   func delete(url: URL, token: String) async throws
-
-  func patch(url: URL, dictionary: [String: Any], token: String) async throws
 }
